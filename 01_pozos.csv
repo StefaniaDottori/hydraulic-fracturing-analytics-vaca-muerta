@@ -1,0 +1,41 @@
+well_id,well_name,operator,field,formation,well_type,lateral_length_m,tvd_m,spud_date,completion_date,latitude,longitude,field_engineer
+WL-001,VAC-001H,TotalEnergies,Vaca Muerta,Organico,Horizontal,2437.0,3721.0,2021-08-02,2021-09-16,-38.03601,-68.80268,M. Gonzalez
+WL-002,LOM-002H,TotalEnergies,Loma Campana,Loma Amarilla,Horizontal,2065.0,2450.0,2018-10-13,2018-12-19,-39.38383,-68.26765,L. Torres
+WL-003,VAC-003H,TotalEnergies,Vaca Muerta,La Cocina,Horizontal,2822.0,3333.0,2018-03-07,2018-04-20,-39.45883,-68.06018,A. Fernandez
+WL-004,LOM-004H,TotalEnergies,Loma Campana,La Cocina,Horizontal,3215.0,2540.0,2021-05-17,2021-07-31,-39.13635,-69.63319,A. Fernandez
+WL-005,PER-005H,Repsol,Permian Basin,Organico,Horizontal,2317.0,3040.0,2020-05-09,2020-07-29,-38.63611,-69.41754,S. Dottori
+WL-006,PER-006H,Repsol,Permian Basin,Organico,Horizontal,2840.0,2423.0,2022-04-04,2022-05-21,-38.91571,-69.26728,M. Gonzalez
+WL-007,VAC-007H,YPF,Vaca Muerta,Loma Amarilla,Horizontal,2575.0,3456.0,2019-03-17,2019-05-10,-39.10065,-68.97153,S. Dottori
+WL-008,LOM-008H,YPF,Loma Campana,Organico,Horizontal,2807.0,2274.0,2020-01-06,2020-03-27,-38.28491,-69.65895,S. Dottori
+WL-009,LOM-009H,Chevron,Loma Campana,Loma Amarilla,Horizontal,1911.0,3718.0,2022-02-03,2022-05-03,-37.56874,-68.38321,L. Torres
+WL-010,EAG-010H,Petrobras,Eagle Ford,Organico,Horizontal,2318.0,2356.0,2018-06-11,2018-08-16,-38.13153,-69.1197,M. Gonzalez
+WL-011,VAC-011H,TotalEnergies,Vaca Muerta,La Cocina,Horizontal,2007.0,2992.0,2021-12-13,2022-03-02,-39.43122,-68.18136,R. Perez
+WL-012,VAC-012H,Repsol,Vaca Muerta,Caliza,Horizontal,2240.0,3260.0,2018-06-13,2018-07-30,-38.87658,-68.95986,L. Torres
+WL-013,NEU-013H,YPF,Neuquén Basin,Organico,Horizontal,2729.0,2496.0,2021-07-25,2021-09-15,-37.56083,-68.44973,M. Gonzalez
+WL-014,VAC-014H,YPF,Vaca Muerta,La Cocina,Horizontal,3397.0,3632.0,2021-10-04,2021-12-07,-38.3042,-68.15625,M. Gonzalez
+WL-015,PER-015H,Chevron,Permian Basin,Organico,Horizontal,1950.0,2514.0,2018-12-01,2019-02-28,-39.40955,-69.34934,A. Fernandez
+WL-016,VAC-016H,YPF,Vaca Muerta,La Cocina,Horizontal,2461.0,2634.0,2019-03-26,2019-06-16,-37.84252,-69.28649,S. Dottori
+WL-017,PER-017H,YPF,Permian Basin,Organico,Horizontal,2278.0,3068.0,2022-07-07,2022-08-10,-39.21815,-68.39561,M. Gonzalez
+WL-018,NEU-018H,YPF,Neuquén Basin,Caliza,Horizontal,1927.0,3779.0,2021-03-07,2021-05-01,-37.95551,-69.60257,L. Torres
+WL-019,NEU-019H,YPF,Neuquén Basin,La Cocina,Horizontal,1809.0,3505.0,2018-10-20,2019-01-05,-38.08629,-68.54199,A. Fernandez
+WL-020,LOM-020H,YPF,Loma Campana,Caliza,Horizontal,3111.0,2318.0,2021-01-08,2021-04-05,-38.78307,-69.76826,A. Fernandez
+WL-021,NEU-021H,YPF,Neuquén Basin,La Cocina,Horizontal,3267.0,3197.0,2020-03-28,2020-05-29,-38.8382,-69.87288,L. Torres
+WL-022,VAC-022H,TotalEnergies,Vaca Muerta,La Cocina,Horizontal,2329.0,2720.0,2018-07-06,2018-09-14,-38.04079,-68.72489,M. Gonzalez
+WL-023,LOM-023H,Chevron,Loma Campana,Loma Amarilla,Horizontal,3308.0,2956.0,2022-06-11,2022-08-04,-39.26081,-68.57351,L. Torres
+WL-024,LOM-024H,Chevron,Loma Campana,Organico,Horizontal,3093.0,3098.0,2021-05-05,2021-07-09,-37.95807,-69.01241,S. Dottori
+WL-025,LOM-025H,TotalEnergies,Loma Campana,Organico,Horizontal,2689.0,2884.0,2021-10-25,2022-01-12,-39.44916,-69.78422,R. Perez
+WL-026,PER-026H,YPF,Permian Basin,La Cocina,Horizontal,1853.0,3218.0,2018-08-17,2018-10-15,-38.87129,-68.98286,S. Dottori
+WL-027,LOM-027H,YPF,Loma Campana,La Cocina,Horizontal,3343.0,2599.0,2022-01-18,2022-03-21,-38.67923,-68.4889,S. Dottori
+WL-028,LOM-028H,YPF,Loma Campana,La Cocina,Horizontal,2189.0,2323.0,2022-11-18,2022-12-27,-38.9205,-69.67756,R. Perez
+WL-029,LOM-029H,Repsol,Loma Campana,Loma Amarilla,Horizontal,3380.0,3493.0,2022-04-11,2022-06-18,-38.23319,-68.25708,R. Perez
+WL-030,VAC-030H,TotalEnergies,Vaca Muerta,Organico,Horizontal,3166.0,2499.0,2020-09-27,2020-12-22,-37.71488,-68.92132,R. Perez
+WL-031,NEU-031H,TotalEnergies,Neuquén Basin,Loma Amarilla,Horizontal,3173.0,3634.0,2019-05-06,2019-06-10,-38.86399,-69.7799,L. Torres
+WL-032,LOM-032H,TotalEnergies,Loma Campana,La Cocina,Horizontal,2187.0,2883.0,2022-07-30,2022-09-06,-37.86397,-68.27854,L. Torres
+WL-033,EAG-033H,Repsol,Eagle Ford,Caliza,Horizontal,1812.0,3017.0,2021-01-30,2021-03-14,-38.66518,-69.55578,A. Fernandez
+WL-034,EAG-034H,Repsol,Eagle Ford,Caliza,Horizontal,2004.0,2740.0,2022-03-27,2022-06-07,-37.61418,-69.35359,R. Perez
+WL-035,PER-035H,Petrobras,Permian Basin,Loma Amarilla,Horizontal,2682.0,3325.0,2020-06-16,2020-07-31,-38.77274,-68.05644,M. Gonzalez
+WL-036,VAC-036H,YPF,Vaca Muerta,La Cocina,Horizontal,3436.0,2603.0,2018-05-12,2018-07-18,-38.5055,-69.39824,M. Gonzalez
+WL-037,VAC-037H,TotalEnergies,Vaca Muerta,La Cocina,Horizontal,2284.0,2259.0,2018-01-15,2018-02-18,-38.28087,-68.99464,S. Dottori
+WL-038,VAC-038H,YPF,Vaca Muerta,La Cocina,Horizontal,1888.0,2646.0,2022-10-27,2022-12-13,-37.68347,-69.52088,L. Torres
+WL-039,NEU-039H,Petrobras,Neuquén Basin,Caliza,Horizontal,2046.0,2983.0,2019-03-15,2019-04-29,-37.5287,-69.51589,L. Torres
+WL-040,NEU-040H,Chevron,Neuquén Basin,Loma Amarilla,Horizontal,2943.0,3419.0,2022-07-12,2022-08-17,-39.02472,-68.54357,L. Torres

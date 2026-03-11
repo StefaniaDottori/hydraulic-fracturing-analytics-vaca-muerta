@@ -1,0 +1,4 @@
+formation,toc_pct,porosity_pct,water_saturation_pct,clay_content_pct,permeability_nd,thickness_m,avg_depth_m,youngs_modulus_gpa,poisson_ratio,brittleness_index,fracture_gradient_psi_ft,reservoir_pressure_psi,pwave_velocity_ms,depositional_facies,depositional_energy,lateral_continuity,net_to_gross,lithology_dominant,depositional_environment,bioturbation_index,lamination,fissility_index
+Loma Amarilla,4.5,9.5,22.0,14.0,0.006,38.0,2800.0,35.0,0.22,0.76,0.71,5500.0,4100.0,Calcareous Shale,High,Continuous,0.7,Carbonate-rich Shale,Shallow Marine Carbonate Ramp,1,Moderate,1
+La Cocina,3.0,8.0,30.0,24.0,0.003,30.0,3100.0,14.0,0.29,0.38,0.8,6200.0,3000.0,Organic Mudstone,Low,Discontinuous,0.42,Clay-rich Organic Shale,Deep Marine Anoxic Basin,0,Well-preserved,3
+Organico,6.5,11.5,18.0,11.0,0.01,45.0,2500.0,24.0,0.25,0.58,0.68,4800.0,3500.0,Siliceous Marlstone,Medium,Heterogeneous,0.62,Mixed Marlstone,Transitional Marine Ramp,2,Poor,2
