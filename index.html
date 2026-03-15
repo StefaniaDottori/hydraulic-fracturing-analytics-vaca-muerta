@@ -36,6 +36,58 @@
 
   .dash { max-width: 1100px; margin: 0 auto; }
 
+  .lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-left: 16px;
+    flex-shrink: 0;
+  }
+  .lang-btn {
+    padding: 5px 12px;
+    font-size: 11px;
+    font-family: var(--mono);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    background: var(--white);
+    color: var(--text-sub);
+    border: none;
+    border-right: 1px solid var(--border);
+    transition: all 0.15s;
+  }
+  .lang-btn:last-child { border-right: none; }
+  .lang-btn:hover { color: var(--red); }
+  .lang-btn.active { background: var(--red); color: #fff; }
+
+  .lang-toggle {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+  .lang-btn {
+    padding: 5px 13px;
+    font-size: 11px;
+    font-family: var(--mono);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    background: var(--white);
+    color: var(--text-sub);
+    border: none;
+    border-right: 1px solid var(--border);
+    transition: all 0.15s;
+  }
+  .lang-btn:last-child { border-right: none; }
+  .lang-btn:hover { color: var(--red); }
+  .lang-btn.active { background: var(--red); color: #fff; }
+
   /* ── Header ── */
   .header {
     display: flex;
@@ -654,19 +706,25 @@
   <!-- Header -->
   <div class="header">
     <div class="header-left">
-      <h1>Hydraulic fracturing operations — Vaca Muerta</h1>
-      <p>Completion data analytics &nbsp;·&nbsp; S. Dottori portfolio 2025</p>
+      <h1 data-i18n="title">Hydraulic fracturing operations — Vaca Muerta</h1>
+      <p data-i18n="subtitle">Completion data analytics &nbsp;·&nbsp; S. Dottori portfolio 2025</p>
     </div>
-    <div class="header-right">
-      40 wells &nbsp;·&nbsp; 1,255 frac stages &nbsp;·&nbsp; 24-month decline<br>
-      TotalEnergies · Repsol · Chevron · YPF · Petrobras
+    <div style="display:flex;flex-direction:column;align-items:flex-end;">
+      <div class="header-right" data-i18n="header_right">
+        40 wells &nbsp;·&nbsp; 1,255 frac stages &nbsp;·&nbsp; 24-month decline<br>
+        TotalEnergies · Repsol · Chevron · YPF · Petrobras
+      </div>
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('es')">ES</button>
+      </div>
     </div>
   </div>
 
   <!-- Filters -->
   <div class="filters">
-    <span class="filter-label">Formation</span>
-    <button class="pill active" onclick="setFilter('all')">All formations</button>
+    <span class="filter-label" data-i18n="filter_label">Formation</span>
+    <button class="pill active" onclick="setFilter('all')" data-i18n="filter_all">All formations</button>
     <button class="pill" onclick="setFilter('Organico')">Organico</button>
     <button class="pill" onclick="setFilter('La Cocina')">La Cocina</button>
     <button class="pill" onclick="setFilter('Loma Amarilla')">Loma Amarilla</button>
@@ -675,17 +733,17 @@
   <!-- KPIs -->
   <div class="kpis">
     <div class="kpi">
-      <div class="kpi-label">Avg IP — month 1</div>
+      <div class="kpi-label" data-i18n="kpi_ip_label">Avg IP — month 1</div>
       <div class="kpi-value" id="kpi-ip">681<sup>bopd</sup></div>
       <div class="kpi-sub" id="kpi-ip-sub">across 3 formations</div>
     </div>
     <div class="kpi">
-      <div class="kpi-label">Stages completed</div>
+      <div class="kpi-label" data-i18n="kpi_stages_label">Stages completed</div>
       <div class="kpi-value" id="kpi-stages">1,118</div>
       <div class="kpi-sub" id="kpi-stages-sub">9% screen-out rate</div>
     </div>
     <div class="kpi">
-      <div class="kpi-label">Avg fracture half-length</div>
+      <div class="kpi-label" data-i18n="kpi_hl_label">Avg fracture half-length</div>
       <div class="kpi-value" id="kpi-hl">211<sup>m</sup></div>
       <div class="kpi-sub" id="kpi-hl-sub">PDAT diagnostic median</div>
     </div>
@@ -694,8 +752,8 @@
   <!-- Decline curve — full width -->
   <div class="chart-full">
     <div class="chart-card">
-      <div class="chart-title">Production decline by formation</div>
-      <div class="chart-sub">Avg bopd per formation (mean across all wells in group) — Arps hyperbolic b=1.2, 24 months on production</div>
+      <div class="chart-title" data-i18n="decline_title">Production decline by formation</div>
+      <div class="chart-sub" data-i18n="decline_sub">Avg bopd per formation (mean across all wells in group) — Arps hyperbolic b=1.2, 24 months on production</div>
       <div class="legend" id="decline-legend">
         <span class="legend-item"><span class="leg-sq" style="background:#C0392B"></span>Organico &nbsp;Di 6%/mo &nbsp;<span style="font-family:var(--mono);font-size:10px;color:#C0392B">IP₁ 907</span></span>
         <span class="legend-item"><span class="leg-sq" style="background:#D4A017"></span>Loma Amarilla &nbsp;Di 8%/mo &nbsp;<span style="font-family:var(--mono);font-size:10px;color:#D4A017">IP₁ 565</span></span>
@@ -710,22 +768,22 @@
   <!-- Bottom row -->
   <div class="charts-bottom">
     <div class="chart-card">
-      <div class="chart-title">Avg IP by formation</div>
-      <div class="chart-sub">Month 1 production (bopd)</div>
+      <div class="chart-title" data-i18n="ip_title">Avg IP by formation</div>
+      <div class="chart-sub" data-i18n="ip_sub">Month 1 production (bopd)</div>
       <div style="position:relative;width:100%;height:220px;">
         <canvas id="ipChart"></canvas>
       </div>
     </div>
     <div class="chart-card">
-      <div class="chart-title">Fracture half-length</div>
-      <div class="chart-sub">PDAT diagnostic average (m)</div>
+      <div class="chart-title" data-i18n="hl_title">Fracture half-length</div>
+      <div class="chart-sub" data-i18n="hl_sub">PDAT diagnostic average (m)</div>
       <div style="position:relative;width:100%;height:220px;">
         <canvas id="hlChart"></canvas>
       </div>
     </div>
     <div class="chart-card">
-      <div class="chart-title">Screen-out distribution</div>
-      <div class="chart-sub">By formation — <strong style="color:var(--text)">98 total events</strong> · 9% avg rate</div>
+      <div class="chart-title" data-i18n="so_title">Screen-out distribution</div>
+      <div class="chart-sub" data-i18n="so_sub">By formation — <strong style="color:var(--text)">98 total events</strong> · 9% avg rate</div>
       <div class="legend">
         <span class="legend-item"><span class="leg-sq" style="background:#555"></span>La Cocina 43</span>
         <span class="legend-item"><span class="leg-sq" style="background:#C0392B"></span>Organico 33</span>
@@ -742,19 +800,19 @@
 
     <div class="bc-section-header">
       <div class="bc-section-title">
-        Business case
-        <span>completion analytics · upstream O&G · 2025</span>
+        <span data-i18n="bc_title">Business case</span>
+        <span data-i18n="bc_subtitle">completion analytics · upstream O&G · 2025</span>
       </div>
       <button class="bc-btn-pdf" onclick="printBusinessCase()">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
         </svg>
-        Download as PDF
+        <span data-i18n="bc_pdf_btn">Download as PDF</span>
       </button>
     </div>
 
     <!-- Problem statement -->
-    <div class="bc-intro">
+    <div class="bc-intro" data-i18n="bc_problem">
       Hydraulic fracturing is the single largest cost driver in unconventional development — yet frac design decisions are still made without integrating real-time diagnostics, geological facies, or post-frac production feedback. <strong>Engineers default to rules-of-thumb. Operators overspend on stages that won't produce.</strong>
       <br><br>
       This portfolio demonstrates a full-stack analytics pipeline built on 40 Vaca Muerta wells — from raw field CSVs to actionable completion insights.
@@ -764,19 +822,19 @@
     <div class="bc-kpis">
       <div class="bc-kpi">
         <div class="bc-kpi-value">40</div>
-        <div class="bc-kpi-label">Wells analyzed</div>
+        <div class="bc-kpi-label" data-i18n="bc_kpi1">Wells analyzed</div>
       </div>
       <div class="bc-kpi">
         <div class="bc-kpi-value">5,152</div>
-        <div class="bc-kpi-label">Frac records</div>
+        <div class="bc-kpi-label" data-i18n="bc_kpi2">Frac records</div>
       </div>
       <div class="bc-kpi">
         <div class="bc-kpi-value">431</div>
-        <div class="bc-kpi-label">PDAT diagnostics</div>
+        <div class="bc-kpi-label" data-i18n="bc_kpi3">PDAT diagnostics</div>
       </div>
       <div class="bc-kpi">
         <div class="bc-kpi-value">4</div>
-        <div class="bc-kpi-label">Formations</div>
+        <div class="bc-kpi-label" data-i18n="bc_kpi4">Formations</div>
       </div>
     </div>
 
@@ -784,22 +842,22 @@
     <div class="bc-findings">
       <div class="bc-findings-header">
         <span>#</span>
-        <span>Finding</span>
-        <span>Geological context &amp; data</span>
-        <span>Cost of not knowing</span>
+        <span data-i18n="th_finding">Finding</span>
+        <span data-i18n="th_geo">Geological context &amp; data</span>
+        <span data-i18n="th_cost">Cost of not knowing</span>
       </div>
 
       <!-- 01 -->
       <div class="bc-finding-row">
         <span class="bc-finding-num">01</span>
         <div class="bc-finding-insight">
-          Fracturability ≠ Producibility
-          <span class="bc-tag">Orgánico vs La Cocina</span>
+          <span data-i18n="f01_title">Fracturability ≠ Producibility</span>
+          <span class="bc-tag" data-i18n="f01_tag">Orgánico vs La Cocina</span>
         </div>
-        <div class="bc-finding-explanation">
+        <div class="bc-finding-explanation" data-i18n="f01_exp">
           The Orgánico member has a brittleness index lower than Loma Amarilla, yet delivers the highest initial production — <span class="bc-num">907 bopd avg IP</span> — because its organic richness (<span class="bc-num">TOC 6.5%</span>) and matrix porosity (<span class="bc-num">ϕ 11.5%</span>) drive fluid storage and connectivity. La Cocina, despite being easier to fracture in isolation, is a ductile, organic-lean formation deposited in an anoxic environment: it breaks, but it doesn't flow. This analysis decouples the mechanical completion target from the actual production target, showing they are not the same zone.
         </div>
-        <div class="bc-finding-cost">
+        <div class="bc-finding-cost" data-i18n="f01_cost">
           <strong>If you don't know this:</strong> completion engineers land laterals and concentrate stages in the most brittle intervals — often Loma Amarilla or La Cocina — chasing easy fractures. You get SRV without storage. Wells are completed in the wrong bench, capital is allocated to low-productivity zones, and the portfolio underperforms against type curves with no clear engineering explanation.
         </div>
       </div>
@@ -808,13 +866,13 @@
       <div class="bc-finding-row">
         <span class="bc-finding-num">02</span>
         <div class="bc-finding-insight">
-          PDAT fracture half-length is the best predictor of IP
+          <span data-i18n="f02_title">PDAT fracture half-length is the best predictor of IP</span>
           <span class="bc-tag">r² &gt; 0.70</span>
         </div>
-        <div class="bc-finding-explanation">
+        <div class="bc-finding-explanation" data-i18n="f02_exp">
           Cross-correlating PDAT diagnostic half-length against month-1 production across <span class="bc-num">431 frac stages</span> reveals a statistically significant positive relationship (<span class="bc-num">r² &gt; 0.70</span>). Half-length is the best available field-measurable proxy for Stimulated Reservoir Volume (SRV). A longer propped half-length means more reservoir contacted, more fluid pathways, higher early production. The relationship holds consistently across formations, making it a reliable pre-frac design lever: optimize for half-length, optimize for IP.
         </div>
-        <div class="bc-finding-cost">
+        <div class="bc-finding-cost" data-i18n="f02_cost">
           <strong>If you don't know this:</strong> frac design is optimized for net pressure response or treating pressure targets rather than SRV. Teams pump more fluid and proppant without understanding which geometric parameter actually drives production. PDAT data exists in every well file but sits unanalyzed — a data asset generating zero value.
         </div>
       </div>
@@ -823,13 +881,13 @@
       <div class="bc-finding-row">
         <span class="bc-finding-num">03</span>
         <div class="bc-finding-insight">
-          La Cocina has a 9% screen-out rate
-          <span class="bc-tag">highest across all formations</span>
+          <span data-i18n="f03_title">La Cocina has a 9% screen-out rate</span>
+          <span class="bc-tag" data-i18n="f03_tag">highest across all formations</span>
         </div>
-        <div class="bc-finding-explanation">
+        <div class="bc-finding-explanation" data-i18n="f03_exp">
           La Cocina was deposited in an anoxic, deep-water environment with high clay content and low quartz cementation — a depositional context that produces a ductile, plastic rock. Under hydraulic load, fractures don't propagate cleanly: they tortue, branch, and close early, restricting slurry flow and leading to premature screen-out. At <span class="bc-num">9% screen-out rate</span> across <span class="bc-num">398 analyzed stages</span>, this formation requires a fundamentally different fluid system (lower viscosity, smaller mesh proppant) and a more conservative rate schedule than the cross-formation default design.
         </div>
-        <div class="bc-finding-cost">
+        <div class="bc-finding-cost" data-i18n="f03_cost">
           <strong>If you don't know this:</strong> you apply the same frac recipe across all benches. In La Cocina, this means repeated screen-outs, coiled tubing interventions to clean out bridges, lost stages, and NPT that compounds across a multi-well pad. Each aborted stage is a direct cost. More critically, it becomes a safety risk: wellbore pressure buildup from screen-out events is a leading cause of equipment failures and surface incidents in operations.
         </div>
       </div>
@@ -838,13 +896,13 @@
       <div class="bc-finding-row">
         <span class="bc-finding-num">04</span>
         <div class="bc-finding-insight">
-          La Cocina declines 2× faster than Orgánico
+          <span data-i18n="f04_title">La Cocina declines 2× faster than Orgánico</span>
           <span class="bc-tag">Di 12%/mo vs 6%/mo</span>
         </div>
-        <div class="bc-finding-explanation">
+        <div class="bc-finding-explanation" data-i18n="f04_exp">
           Fitting Arps hyperbolic decline curves (<span class="bc-num">b = 1.2</span>) to 24-month production data by formation shows a stark divergence: Orgánico maintains a decline rate of <span class="bc-num">Di = 6%/month</span>, while La Cocina loses production at <span class="bc-num">Di = 12%/month</span>. By month 12, a La Cocina well produces roughly half what an equivalent Orgánico well would. This is consistent with La Cocina's lower matrix porosity and faster pressure depletion in a ductile, low-storage system. The implication extends beyond production forecasting: it changes the EUR, the economic breakeven, and the optimal restimulation timing for each bench independently.
         </div>
-        <div class="bc-finding-cost">
+        <div class="bc-finding-cost" data-i18n="f04_cost">
           <strong>If you don't know this:</strong> reserves are booked using a single basin-wide decline curve. La Cocina wells are systematically over-booked early in field life, with write-downs required as production data matures. Investors and partners receive misleading EUR estimates. Acquisition pricing based on blended type curves overpays for La Cocina-heavy assets — a material financial risk at portfolio scale.
         </div>
       </div>
@@ -853,28 +911,28 @@
 
     <!-- Glossary -->
     <div class="bc-glossary">
-      <span class="bc-glossary-label">Abbreviations</span>
-      <span class="bc-glossary-item"><span class="bc-glossary-term">IP</span> Initial Production — oil rate (bopd) at month 1, the primary well performance benchmark</span>
+      <span class="bc-glossary-label" data-i18n="gloss_label">Abbreviations</span>
+      <span class="bc-glossary-item"><span class="bc-glossary-term">IP</span> <span data-i18n="gloss_ip">Initial Production — oil rate (bopd) at month 1, the primary well performance benchmark</span></span>
       <span class="bc-glossary-sep">·</span>
-      <span class="bc-glossary-item"><span class="bc-glossary-term">SRV</span> Stimulated Reservoir Volume — total rock volume effectively contacted by the fracture network</span>
+      <span class="bc-glossary-item"><span class="bc-glossary-term">SRV</span> <span data-i18n="gloss_srv">Stimulated Reservoir Volume — total rock volume effectively contacted by the fracture network</span></span>
       <span class="bc-glossary-sep">·</span>
-      <span class="bc-glossary-item"><span class="bc-glossary-term">Di</span> Initial Decline Rate — monthly rate at which production decreases at the start of decline (Arps model)</span>
+      <span class="bc-glossary-item"><span class="bc-glossary-term">Di</span> <span data-i18n="gloss_di">Initial Decline Rate — monthly rate at which production decreases at the start of decline (Arps model)</span></span>
       <span class="bc-glossary-sep">·</span>
-      <span class="bc-glossary-item"><span class="bc-glossary-term">r²</span> Coefficient of determination — statistical measure of how well a variable predicts another (0–1 scale; &gt;0.70 = strong)</span>
+      <span class="bc-glossary-item"><span class="bc-glossary-term">r²</span> <span data-i18n="gloss_r2">Coefficient of determination — statistical measure of how well a variable predicts another (0–1 scale; &gt;0.70 = strong)</span></span>
       <span class="bc-glossary-sep">·</span>
-      <span class="bc-glossary-item"><span class="bc-glossary-term">PDAT</span> Post-frac Diagnostic Analysis Tool — field diagnostic that measures actual fracture geometry after treatment</span>
+      <span class="bc-glossary-item"><span class="bc-glossary-term">PDAT</span> <span data-i18n="gloss_pdat">Post-frac Diagnostic Analysis Tool — field diagnostic that measures actual fracture geometry after treatment</span></span>
     </div>
 
-    <!-- Fracture Models vs Reality -->
+        <!-- Fracture Models vs Reality -->
     <div class="bc-fm-header">
       <div>
-        <span class="bc-op-title">Fracture geometry — models vs. field reality</span>
-        <span class="bc-op-sub">theoretical assumptions vs. what the data actually shows</span>
+        <span class="bc-op-title" data-i18n="fm_title">Fracture geometry — models vs. field reality</span>
+        <span class="bc-op-sub" data-i18n="fm_sub">theoretical assumptions vs. what the data actually shows</span>
       </div>
       <div class="bc-fm-axiom">"Fracture geometry models are hypotheses. Production data is the only real validation."</div>
     </div>
 
-    <div class="bc-fm-intro">
+    <div class="bc-fm-intro" data-i18n="fm_intro">
       Classic fracture models — <strong>PKN, KGD, radial</strong> — are analytical solutions built on idealized assumptions: homogeneous rock, contained fracture height, symmetric propagation, a single planar fracture. In the field, none of these hold. The rock has laminations, natural fractures, lithological variations every few meters, and stress contrasts that shift with depth. What we can actually <em>measure</em> after a treatment is always indirect — and that gap between model and reality is where the risk lives.
     </div>
 
@@ -882,25 +940,25 @@
       <div class="bc-fm-head-row">
         <span>#</span>
         <span>Finding</span>
-        <span>Model applied &amp; assumptions</span>
-        <span>What the model can't see</span>
-        <span>What we used instead</span>
+        <span data-i18n="fm_th_model">Model applied &amp; assumptions</span>
+        <span data-i18n="fm_th_blind">What the model can't see</span>
+        <span data-i18n="fm_th_used">What we used instead</span>
       </div>
 
       <!-- 01 -->
       <div class="bc-fm-row">
         <span class="bc-finding-num">01</span>
         <div class="bc-finding-insight" style="font-size:12px;">
-          Fracturability ≠ Producibility
-          <span class="bc-tag">PKN / brittleness index</span>
+          <span data-i18n="fm01_title">Fracturability ≠ Producibility</span>
+          <span class="bc-tag" data-i18n="fm01_tag">PKN / brittleness index</span>
         </div>
-        <div class="bc-fm-cell">
+        <div class="bc-fm-cell" data-i18n="fm01_model">
           <span class="bc-fm-model">PKN model</span> assumes a single vertical fracture with contained height propagating in a homogeneous, isotropic rock. Brittleness Index (BI) is used as the primary completion quality proxy — higher BI = better frac candidate. The model predicts longer half-lengths in brittle rock and designs stage placement accordingly.
         </div>
-        <div class="bc-fm-cell">
+        <div class="bc-fm-cell" data-i18n="fm01_blind">
           PKN cannot account for organic content, matrix porosity, or fluid storage capacity. A high-BI formation that breaks cleanly still needs somewhere to store and flow hydrocarbons. In Vaca Muerta, Orgánico has lower BI than Loma Amarilla but higher TOC and porosity — the model ranks it as a worse frac target when it is actually the best producer.
         </div>
-        <div class="bc-fm-cell bc-fm-validation">
+        <div class="bc-fm-cell bc-fm-validation" data-i18n="fm01_used">
           <span class="bc-fm-tag">Production data</span> Month-1 IP by formation — the only post-treatment proof that the right zone was targeted.<br>
           <span class="bc-fm-tag">Geological props</span> TOC, porosity, and permeability per bench correlated against IP to rank true completion quality.
         </div>
@@ -910,16 +968,16 @@
       <div class="bc-fm-row">
         <span class="bc-finding-num">02</span>
         <div class="bc-finding-insight" style="font-size:12px;">
-          PDAT half-length predicts IP
-          <span class="bc-tag">model vs. diagnostic</span>
+          <span data-i18n="fm02_title">PDAT half-length predicts IP</span>
+          <span class="bc-tag" data-i18n="fm02_tag">model vs. diagnostic</span>
         </div>
-        <div class="bc-fm-cell">
+        <div class="bc-fm-cell" data-i18n="fm02_model">
           <span class="bc-fm-model">PKN / numerical simulators</span> compute a theoretical fracture half-length from fluid volume, viscosity, and rock mechanical properties. This modeled half-length is what engineers use to claim SRV. It is never directly observed — it is a simulation output with significant uncertainty bounds depending on input quality.
         </div>
-        <div class="bc-fm-cell">
+        <div class="bc-fm-cell" data-i18n="fm02_blind">
           The model assumes perfect proppant transport, no near-wellbore tortuosity, and no fracture complexity. In reality, proppant settles, fractures branch, and part of the designed half-length is never propped. The gap between modeled and PDAT-measured half-length is the single largest source of SRV overestimation in unconventional completions — and it directly explains IP variance between wells with similar designs.
         </div>
-        <div class="bc-fm-cell bc-fm-validation">
+        <div class="bc-fm-cell bc-fm-validation" data-i18n="fm02_used">
           <span class="bc-fm-tag">PDAT diagnostic</span> Post-frac pressure transient analysis — gives measured half-length and conductivity, not simulated.<br>
           <span class="bc-fm-tag">Statistical correlation</span> r² &gt; 0.70 between PDAT half-length and IP across 431 stages — empirical, field-validated.
         </div>
@@ -929,16 +987,16 @@
       <div class="bc-fm-row">
         <span class="bc-finding-num">03</span>
         <div class="bc-finding-insight" style="font-size:12px;">
-          La Cocina: 9% screen-out rate
-          <span class="bc-tag">KGD / height containment failure</span>
+          <span data-i18n="fm03_title">La Cocina: 9% screen-out rate</span>
+          <span class="bc-tag" data-i18n="fm03_tag">KGD / height containment failure</span>
         </div>
-        <div class="bc-fm-cell">
+        <div class="bc-fm-cell" data-i18n="fm03_model">
           <span class="bc-fm-model">KGD model</span> assumes a fracture with limited height extension and uniform pressure distribution along its length — appropriate for short, contained fractures in competent rock. For La Cocina, designs based on KGD assume the fracture stays within the target interval, allowing the full slurry volume to be placed before reaching screenout conditions.
         </div>
-        <div class="bc-fm-cell">
+        <div class="bc-fm-cell" data-i18n="fm03_blind">
           La Cocina's ductile, high-clay mineralogy means fractures do not propagate cleanly. Instead of a contained planar fracture, the treatment creates complex, branching geometry with high near-wellbore tortuosity. Pressure builds faster than the model predicts, proppant bridges before the design volume is placed, and the stage screens out. KGD has no mechanism to model this — it cannot simulate ductile fracture complexity or tortuosity-driven pressure escalation.
         </div>
-        <div class="bc-fm-cell bc-fm-validation">
+        <div class="bc-fm-cell bc-fm-validation" data-i18n="fm03_used">
           <span class="bc-fm-tag">Screen-out rate</span> 9% observed across 398 La Cocina stages — empirical evidence that model-based designs systematically fail in this formation.<br>
           <span class="bc-fm-tag">PDAT half-length</span> Shortest measured half-length (163 m avg) confirms fracture complexity and limited propagation despite treatment volume.
         </div>
@@ -948,16 +1006,16 @@
       <div class="bc-fm-row">
         <span class="bc-finding-num">04</span>
         <div class="bc-finding-insight" style="font-size:12px;">
-          La Cocina declines 2× faster
-          <span class="bc-tag">radial model / EUR overestimation</span>
+          <span data-i18n="fm04_title">La Cocina declines 2× faster</span>
+          <span class="bc-tag" data-i18n="fm04_tag">radial model / EUR overestimation</span>
         </div>
-        <div class="bc-fm-cell">
+        <div class="bc-fm-cell" data-i18n="fm04_model">
           <span class="bc-fm-model">Radial / pseudo-radial flow models</span> underpin standard Arps decline curve fitting when formation-specific parameters are unavailable. A single basin-wide b-exponent and Di are applied uniformly, assuming that all formations drain similarly once fractured. This is the default approach when no formation-differentiated analysis exists.
         </div>
-        <div class="bc-fm-cell">
+        <div class="bc-fm-cell" data-i18n="fm04_blind">
           La Cocina's ductile matrix has fundamentally different pressure depletion mechanics than Orgánico. A radial model applied uniformly across both formations cannot capture the 2× difference in decline rate. Microseismic data, where available, would show fracture complexity in La Cocina — but even without it, the production signature is unambiguous: the formation depletes faster, and no theoretical model predicted it. Only production data revealed it.
         </div>
-        <div class="bc-fm-cell bc-fm-validation">
+        <div class="bc-fm-cell bc-fm-validation" data-i18n="fm04_used">
           <span class="bc-fm-tag">Arps hyperbolic fit</span> Formation-differentiated decline modeling: Di 12%/mo (La Cocina) vs 6%/mo (Orgánico) — b = 1.2, 24-month dataset.<br>
           <span class="bc-fm-tag">Production data</span> The only real post-treatment validation available — no microseismic, no tracers, no imaging. Data speaks.
         </div>
@@ -968,33 +1026,33 @@
     <!-- Operational cost table -->
     <div class="bc-op-header">
       <div>
-        <span class="bc-op-title">Operational cost of not knowing</span>
-        <span class="bc-op-sub">field consequences by finding — equipment, chemicals, NPT &amp; standby hours</span>
+        <span class="bc-op-title" data-i18n="op_title">Operational cost of not knowing</span>
+        <span class="bc-op-sub" data-i18n="op_sub">field consequences by finding — equipment, chemicals, NPT &amp; standby hours</span>
       </div>
     </div>
     <div class="bc-findings bc-op-table">
       <div class="bc-op-head-row">
         <span>#</span>
         <span>Finding</span>
-        <span>Field consequence</span>
-        <span>NPT &amp; standby exposure</span>
-        <span>Equipment &amp; chemical impact</span>
+        <span data-i18n="op_th_field">Field consequence</span>
+        <span data-i18n="op_th_npt">NPT &amp; standby exposure</span>
+        <span data-i18n="op_th_equip">Equipment &amp; chemical impact</span>
       </div>
 
       <!-- 01 -->
       <div class="bc-op-row">
         <span class="bc-finding-num">01</span>
         <div class="bc-finding-insight" style="font-size:12px;">
-          Fracturability ≠ Producibility
-          <span class="bc-tag">wrong bench selection</span>
+          <span data-i18n="op01_title">Fracturability ≠ Producibility</span>
+          <span class="bc-tag" data-i18n="op01_tag">wrong bench selection</span>
         </div>
-        <div class="bc-op-cell">
+        <div class="bc-op-cell" data-i18n="op01_field">
           Stages are pumped in the wrong bench — mechanically responsive but geologically non-productive. Fluid and proppant are placed in a zone that breaks easily but doesn't flow. The completion is technically successful, the well is not.
         </div>
-        <div class="bc-op-cell">
+        <div class="bc-op-cell" data-i18n="op01_npt">
           No immediate NPT event, but the standby cost is deferred: restimulation or recompletion jobs months later to target the productive bench. Mobilization of perforating crews, plug-and-perf equipment, and wireline units for a job that shouldn't have been necessary.
         </div>
-        <div class="bc-op-cell bc-op-equip">
+        <div class="bc-op-cell bc-op-equip" data-i18n="op01_equip">
           <span class="bc-op-tag">Proppant</span> Full proppant volume pumped into low-productivity zone — sunk cost with no recovery.<br>
           <span class="bc-op-tag">Fluid system</span> Crosslinked or slickwater design optimized for wrong rock — wasted chemical inventory.
         </div>
@@ -1004,16 +1062,16 @@
       <div class="bc-op-row">
         <span class="bc-finding-num">02</span>
         <div class="bc-finding-insight" style="font-size:12px;">
-          PDAT half-length predicts IP
-          <span class="bc-tag">underutilized diagnostic</span>
+          <span data-i18n="op02_title">PDAT half-length predicts IP</span>
+          <span class="bc-tag" data-i18n="op02_tag">underutilized diagnostic</span>
         </div>
-        <div class="bc-op-cell">
+        <div class="bc-op-cell" data-i18n="op02_field">
           Without half-length as a design target, pumping schedules are not optimized for SRV. Engineers either over-pump (excess fluid, pressure buildup risk) or under-pump (insufficient fracture propagation, low IP). Both outcomes generate unnecessary field events.
         </div>
-        <div class="bc-op-cell">
+        <div class="bc-op-cell" data-i18n="op02_npt">
           Over-pumping scenarios: unplanned pressure exceedances trigger emergency rate reductions — <strong>standby hours</strong> while the crew stabilizes wellbore pressure and evaluates surface equipment integrity. PDAT data already exists in every well file but requires analyst time to interpret.
         </div>
-        <div class="bc-op-cell bc-op-equip">
+        <div class="bc-op-cell bc-op-equip" data-i18n="op02_equip">
           <span class="bc-op-tag">HHP (hydraulic horsepower)</span> Excess pump rate requires additional HHP on location — idle pump trucks on standby generate day-rate cost.<br>
           <span class="bc-op-tag">Friction reducers</span> Higher-than-needed slurry rates require increased FR concentration to control treating pressure.
         </div>
@@ -1023,16 +1081,16 @@
       <div class="bc-op-row">
         <span class="bc-finding-num">03</span>
         <div class="bc-finding-insight" style="font-size:12px;">
-          La Cocina: 9% screen-out rate
-          <span class="bc-tag">highest operational risk</span>
+          <span data-i18n="op03_title">La Cocina: 9% screen-out rate</span>
+          <span class="bc-tag" data-i18n="op03_tag">highest operational risk</span>
         </div>
-        <div class="bc-op-cell">
+        <div class="bc-op-cell" data-i18n="op03_field">
           A screen-out event in La Cocina means the proppant slurry bridges in the near-wellbore or fracture throat before the designed volume is placed. The stage is aborted. The wellbore must be cleaned out before the next stage can begin — adding unplanned hours to the pad schedule.
         </div>
-        <div class="bc-op-cell">
+        <div class="bc-op-cell" data-i18n="op03_npt">
           <strong>Each screen-out event generates:</strong> coiled tubing (CT) mobilization for bridge cleanout (4–8 hrs typical NPT), pump shutdown and wellbore pressure bleed-off time, crew standby while CT unit rigged in, and potential re-perforation if the interval is damaged. At 9% rate across a 15-stage lateral, expect 1–2 CT interventions per well.
         </div>
-        <div class="bc-op-cell bc-op-equip">
+        <div class="bc-op-cell bc-op-equip" data-i18n="op03_equip">
           <span class="bc-op-tag">Extra pump unit</span> Standby high-pressure pump required on location for pressure control during screen-out event management.<br>
           <span class="bc-op-tag">Friction reducers</span> Increased FR dosage needed to reduce tortuosity and near-wellbore friction — unplanned chemical volume.<br>
           <span class="bc-op-tag">Coiled tubing unit</span> CT mobilization per screen-out event — day-rate plus crew standby hours.<br>
@@ -1044,16 +1102,16 @@
       <div class="bc-op-row">
         <span class="bc-finding-num">04</span>
         <div class="bc-finding-insight" style="font-size:12px;">
-          La Cocina declines 2× faster
-          <span class="bc-tag">reserves &amp; restimulation timing</span>
+          <span data-i18n="op04_title">La Cocina declines 2× faster</span>
+          <span class="bc-tag" data-i18n="op04_tag">reserves &amp; restimulation timing</span>
         </div>
-        <div class="bc-op-cell">
+        <div class="bc-op-cell" data-i18n="op04_field">
           Faster decline means the economic limit is reached sooner than planned. Restimulation or infill drilling decisions must be made earlier. If operations teams are working from a single basin type curve, La Cocina wells trigger unplanned interventions — mobilizing equipment that wasn't scheduled in the annual operations plan.
         </div>
-        <div class="bc-op-cell">
+        <div class="bc-op-cell" data-i18n="op04_npt">
           Unplanned restimulation jobs carry full standby overhead: pump fleet, blender, data acquisition unit, and wireline crew must be re-mobilized outside the scheduled pad campaign. Off-cycle mobilization is consistently more expensive than planned-sequence operations. <strong>Standby hours accumulate</strong> during logistics coordination for an unscheduled intervention.
         </div>
-        <div class="bc-op-cell bc-op-equip">
+        <div class="bc-op-cell bc-op-equip" data-i18n="op04_equip">
           <span class="bc-op-tag">Pump fleet</span> Unscheduled re-mobilization outside pad campaign — premium day-rate vs. scheduled sequence.<br>
           <span class="bc-op-tag">Wireline unit</span> Re-perforation for restimulation requires wireline crew and perforating guns not in original AFE.<br>
           <span class="bc-op-tag">Chemical inventory</span> Unplanned restimulation requires emergency chemical procurement — no bulk-order pricing.
@@ -1065,8 +1123,8 @@
     <!-- Value prop + target roles -->
     <div class="bc-bottom">
       <div class="bc-card">
-        <div class="bc-card-title">What I bring</div>
-        <ul class="bc-list">
+        <div class="bc-card-title" data-i18n="vp_bring">What I bring</div>
+        <ul class="bc-list" data-i18n="vp_bring_list">
           <li>Field credibility — 5 yrs running these operations (Halliburton)</li>
           <li>Full-stack pipeline: Python → PostgreSQL → Power BI → GitHub Pages</li>
           <li>PDAT & diagnostic expertise: DFIT, StepRate, Minifrac analysis</li>
@@ -1076,8 +1134,8 @@
         </ul>
       </div>
       <div class="bc-card">
-        <div class="bc-card-title">Target roles</div>
-        <ul class="bc-list">
+        <div class="bc-card-title" data-i18n="vp_roles">Target roles</div>
+        <ul class="bc-list" data-i18n="vp_roles_list">
           <li>Completion Data Analyst</li>
           <li>Reservoir / Production Analyst</li>
           <li>Technical Consultant — Completions</li>
@@ -1091,10 +1149,10 @@
     <div class="bc-cta">
       <div class="bc-cta-left">
         Portfolio &nbsp;·&nbsp; <a href="https://github.com/stefaniadottori/hydraulic-fracturing-analytics-vaca-muerta" target="_blank">github.com/stefaniadottori/hydraulic-fracturing-analytics-vaca-muerta</a><br>
-        Barcelona, Spain &nbsp;·&nbsp; Available for remote &amp; relocation
+        <span data-i18n="cta_location">Barcelona, Spain &nbsp;·&nbsp; Available for remote &amp; relocation</span>
       </div>
       <div class="bc-cta-right">
-        Let's talk completions data.
+        <span data-i18n="cta_text">Let's talk completions data.</span>
         <small>stefania.dottori@email.com</small>
       </div>
     </div>
@@ -1103,8 +1161,8 @@
 
   <!-- Footer -->
   <div class="footer">
-    Dataset: simulated operational data validated against field experience — Halliburton, Vaca Muerta / Eagle Ford / Burgos Basin 2013–2018<br>
-    Geological properties: SPE URTeC-2154603 · SPE URTeC-2437257 · Espinoza 2020 (U.Texas) · AAPG Wiki · AAPG Memoir 121
+    <span data-i18n="footer_data">Dataset: simulated operational data validated against field experience — Halliburton, Vaca Muerta / Eagle Ford / Burgos Basin 2013–2018</span><br>
+    <span data-i18n="footer_geo">Geological properties: SPE URTeC-2154603 · SPE URTeC-2437257 · Espinoza 2020 (U.Texas) · AAPG Wiki · AAPG Memoir 121</span>
   </div>
 
 </div>
@@ -1122,10 +1180,18 @@ function arps(ip, Di, b, n) {
 }
 
 const KPI = {
-  all:             { ip: '681', stages: '1,118', hl: '211', ipSub: 'across 3 formations', stagesSub: '9% screen-out rate', hlSub: 'PDAT diagnostic median' },
-  Organico:        { ip: '907', stages: '412',   hl: '224', ipSub: 'highest TOC — 6.5%', stagesSub: 'Di 6%/month — slowest decline', hlSub: 'intermediate fracturability' },
-  'La Cocina':     { ip: '572', stages: '398',   hl: '163', ipSub: 'ductile — anoxic env.', stagesSub: 'Di 12%/month — fastest decline', hlSub: 'highest screen-out rate' },
-  'Loma Amarilla': { ip: '565', stages: '308',   hl: '247', ipSub: 'most brittle — BI 0.76', stagesSub: 'Di 8%/month — moderate decline', hlSub: 'longest fractures' },
+  en: {
+    all:             { ip: '681', stages: '1,118', hl: '211', ipSub: 'across 3 formations', stagesSub: '9% screen-out rate', hlSub: 'PDAT diagnostic median' },
+    Organico:        { ip: '907', stages: '412',   hl: '224', ipSub: 'highest TOC — 6.5%', stagesSub: 'Di 6%/month — slowest decline', hlSub: 'intermediate fracturability' },
+    'La Cocina':     { ip: '572', stages: '398',   hl: '163', ipSub: 'ductile — anoxic env.', stagesSub: 'Di 12%/month — fastest decline', hlSub: 'highest screen-out rate' },
+    'Loma Amarilla': { ip: '565', stages: '308',   hl: '247', ipSub: 'most brittle — BI 0.76', stagesSub: 'Di 8%/month — moderate decline', hlSub: 'longest fractures' },
+  },
+  es: {
+    all:             { ip: '681', stages: '1.118', hl: '211', ipSub: 'en 3 formaciones', stagesSub: '9% tasa de screen-out', hlSub: 'mediana diagnóstico PDAT' },
+    Organico:        { ip: '907', stages: '412',   hl: '224', ipSub: 'mayor TOC — 6,5%', stagesSub: 'Di 6%/mes — declinación más lenta', hlSub: 'fracturabilidad intermedia' },
+    'La Cocina':     { ip: '572', stages: '398',   hl: '163', ipSub: 'dúctil — amb. anóxico', stagesSub: 'Di 12%/mes — declinación más rápida', hlSub: 'mayor tasa de screen-out' },
+    'Loma Amarilla': { ip: '565', stages: '308',   hl: '247', ipSub: 'más frágil — BI 0,76', stagesSub: 'Di 8%/mes — declinación moderada', hlSub: 'fracturas más largas' },
+  }
 };
 
 const DECLINE = {
@@ -1179,10 +1245,11 @@ function makeDecline(f) {
       responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false } },
       scales: {
-        x: { title: { display: true, text: 'months on production', color: tickColor, font },
+        x: { title: { display: true, text: currentLang === 'es' ? 'meses en producción' : 'months on production', color: tickColor, font },
              ticks: { color: tickColor, font, maxTicksLimit: 12 },
+             min: 1, max: 24, offset: false,
              grid: { color: gridColor } },
-        y: { title: { display: true, text: 'avg oil (bopd)', color: tickColor, font },
+        y: { title: { display: true, text: currentLang === 'es' ? 'petróleo prom. (bopd)' : 'avg oil (bopd)', color: tickColor, font },
              min: 0,
              suggestedMax: 1000,
              ticks: { color: tickColor, font },
@@ -1305,7 +1372,7 @@ function makeDonut(f) {
 }
 
 function updateKPIs(f) {
-  const d = KPI[f];
+  const d = KPI[currentLang][f];
   document.getElementById('kpi-ip').innerHTML    = d.ip + '<sup>bopd</sup>';
   document.getElementById('kpi-ip-sub').textContent    = d.ipSub;
   document.getElementById('kpi-stages').textContent    = d.stages;
@@ -1324,12 +1391,266 @@ function renderAll(f) {
 }
 
 function setFilter(f) {
+  currentFilter = f;
   document.querySelectorAll('.pill').forEach(p => {
-    const label = p.textContent.trim();
-    p.classList.toggle('active', (f === 'all' && label === 'All formations') || label === f);
+    const label = p.getAttribute('data-i18n') === 'filter_all'
+      ? (f === 'all')
+      : p.textContent.trim() === f;
+    p.classList.toggle('active', f === 'all' ? p.getAttribute('data-i18n') === 'filter_all' : p.textContent.trim() === f);
   });
   renderAll(f);
 }
+
+// ── i18n ─────────────────────────────────────────────────────
+const LANG = {
+  en: {
+    title:        'Hydraulic fracturing operations — Vaca Muerta',
+    subtitle:     'Completion data analytics &nbsp;·&nbsp; S. Dottori portfolio 2025',
+    header_right: '40 wells &nbsp;·&nbsp; 1,255 frac stages &nbsp;·&nbsp; 24-month decline<br>TotalEnergies · Repsol · Chevron · YPF · Petrobras',
+    filter_label: 'Formation',
+    filter_all:   'All formations',
+    kpi_ip_label: 'Avg IP — month 1',
+    kpi_stages_label: 'Stages completed',
+    kpi_hl_label: 'Avg fracture half-length',
+    decline_title:'Production decline by formation',
+    decline_sub:  'Avg bopd per formation (mean across all wells in group) — Arps hyperbolic b=1.2, 24 months on production',
+    ip_title:     'Avg IP by formation',
+    ip_sub:       'Month 1 production (bopd)',
+    hl_title:     'Fracture half-length',
+    hl_sub:       'PDAT diagnostic average (m)',
+    so_title:     'Screen-out distribution',
+    so_sub:       'By formation — <strong style="color:var(--text)">98 total events</strong> · 9% avg rate',
+    bc_title:     'Business case',
+    bc_subtitle:  'completion analytics · upstream O&G · 2025',
+    bc_pdf_btn:   'Download as PDF',
+    bc_problem:   'Hydraulic fracturing is the single largest cost driver in unconventional development — yet frac design decisions are still made without integrating real-time diagnostics, geological facies, or post-frac production feedback. <strong>Engineers default to rules-of-thumb. Operators overspend on stages that won\'t produce.</strong><br><br>This portfolio demonstrates a full-stack analytics pipeline built on 40 Vaca Muerta wells — from raw field CSVs to actionable completion insights.',
+    bc_kpi1:      'Wells analyzed',
+    bc_kpi2:      'Frac records',
+    bc_kpi3:      'PDAT diagnostics',
+    bc_kpi4:      'Formations',
+    th_finding:   'Finding',
+    th_geo:       'Geological context &amp; data',
+    th_cost:      'Cost of not knowing',
+    gloss_label:  'Abbreviations',
+    fm_title:     'Fracture geometry — models vs. field reality',
+    fm_sub:       'theoretical assumptions vs. what the data actually shows',
+    fm_intro:     'Classic fracture models — <strong>PKN, KGD, radial</strong> — are analytical solutions built on idealized assumptions: homogeneous rock, contained fracture height, symmetric propagation, a single planar fracture. In the field, none of these hold. The rock has laminations, natural fractures, lithological variations every few meters, and stress contrasts that shift with depth. What we can actually <em>measure</em> after a treatment is always indirect — and that gap between model and reality is where the risk lives.',
+    fm_th_model:  'Model applied &amp; assumptions',
+    fm_th_blind:  'What the model can\'t see',
+    fm_th_used:   'What we used instead',
+    op_title:     'Operational cost of not knowing',
+    op_sub:       'field consequences by finding — equipment, chemicals, NPT &amp; standby hours',
+    op_th_field:  'Field consequence',
+    op_th_npt:    'NPT &amp; standby exposure',
+    op_th_equip:  'Equipment &amp; chemical impact',
+    vp_bring:     'What I bring',
+    vp_roles:     'Target roles',
+    cta_text:     'Let\'s talk completions data.',
+    gloss_ip:     'Initial Production — oil rate (bopd) at month 1, the primary well performance benchmark',
+    gloss_srv:    'Stimulated Reservoir Volume — total rock volume effectively contacted by the fracture network',
+    gloss_di:     'Initial Decline Rate — monthly rate at which production decreases at the start of decline (Arps model)',
+    gloss_r2:     'Coefficient of determination — statistical measure of how well a variable predicts another (0–1 scale; &gt;0.70 = strong)',
+    gloss_pdat:   'Post-frac Diagnostic Analysis Tool — field diagnostic that measures actual fracture geometry after treatment',
+    so_sub:       'By formation — <strong style="color:var(--text)">98 total events</strong> · 9% avg rate',
+    f01_title:    'Fracturability ≠ Producibility',
+    f01_tag:      'Orgánico vs La Cocina',
+    f01_exp:      'The Orgánico member has a brittleness index lower than Loma Amarilla, yet delivers the highest initial production — <span class="bc-num">907 bopd avg IP</span> — because its organic richness (<span class="bc-num">TOC 6.5%</span>) and matrix porosity (<span class="bc-num">ϕ 11.5%</span>) drive fluid storage and connectivity. La Cocina, despite being easier to fracture, is a ductile, organic-lean formation deposited in an anoxic environment: it breaks, but it doesn\'t flow.',
+    f01_cost:     '<strong>If you don\'t know this:</strong> completion engineers concentrate stages in the most brittle intervals — chasing easy fractures. You get SRV without storage. Wells are completed in the wrong bench, capital is allocated to low-productivity zones, and the portfolio underperforms against type curves with no clear engineering explanation.',
+    f02_title:    'PDAT fracture half-length is the best predictor of IP',
+    f02_exp:      'Cross-correlating PDAT diagnostic half-length against month-1 production across <span class="bc-num">431 frac stages</span> reveals a statistically significant positive relationship (<span class="bc-num">r² &gt; 0.70</span>). Half-length is the best field-measurable proxy for Stimulated Reservoir Volume (SRV). A longer propped half-length means more reservoir contacted, more fluid pathways, higher early production.',
+    f02_cost:     '<strong>If you don\'t know this:</strong> frac design is optimized for net pressure response rather than SRV. Teams pump more fluid and proppant without understanding which geometric parameter drives production. PDAT data exists in every well file but sits unanalyzed — a data asset generating zero value.',
+    f03_title:    'La Cocina has a 9% screen-out rate',
+    f03_tag:      'highest across all formations',
+    f03_exp:      'La Cocina was deposited in an anoxic, deep-water environment with high clay content and low quartz cementation — a ductile, plastic rock. Under hydraulic load, fractures don\'t propagate cleanly: they torque, branch, and close early, leading to premature screen-out. At <span class="bc-num">9% screen-out rate</span> across <span class="bc-num">398 analyzed stages</span>, this formation requires a fundamentally different fluid system and a more conservative rate schedule.',
+    f03_cost:     '<strong>If you don\'t know this:</strong> you apply the same frac recipe across all benches. In La Cocina: repeated screen-outs, coiled tubing interventions, lost stages, and NPT that compounds across a multi-well pad. Wellbore pressure buildup during screen-out events is also a leading cause of equipment failures and surface incidents.',
+    f04_title:    'La Cocina declines 2× faster than Orgánico',
+    f04_exp:      'Fitting Arps hyperbolic decline curves (<span class="bc-num">b = 1.2</span>) to 24-month data shows a stark divergence: Orgánico maintains <span class="bc-num">Di = 6%/month</span>, while La Cocina loses production at <span class="bc-num">Di = 12%/month</span>. By month 12, a La Cocina well produces roughly half what an equivalent Orgánico well would.',
+    f04_cost:     '<strong>If you don\'t know this:</strong> reserves are booked using a single basin-wide decline curve. La Cocina wells are systematically over-booked early in field life, with write-downs required as data matures. Acquisition pricing based on blended type curves overpays for La Cocina-heavy assets — a material financial risk at portfolio scale.',
+
+    // FM table EN
+    fm01_title: 'Fracturability ≠ Producibility',
+    fm01_tag:   'PKN / brittleness index',
+    fm01_model: '<span class="bc-fm-model">PKN model</span> assumes a single vertical fracture with contained height propagating in a homogeneous, isotropic rock. Brittleness Index (BI) is used as the primary completion quality proxy — higher BI = better frac candidate. The model predicts longer half-lengths in brittle rock and designs stage placement accordingly.',
+    fm01_blind: 'PKN cannot account for organic content, matrix porosity, or fluid storage capacity. A high-BI formation that breaks cleanly still needs somewhere to store and flow hydrocarbons. In Vaca Muerta, Orgánico has lower BI than Loma Amarilla but higher TOC and porosity — the model ranks it as a worse frac target when it is actually the best producer.',
+    fm01_used:  '<span class="bc-fm-tag">Production data</span> Month-1 IP by formation — the only post-treatment proof that the right zone was targeted.<br><span class="bc-fm-tag">Geological props</span> TOC, porosity, and permeability per bench correlated against IP to rank true completion quality.',
+    fm02_title: 'PDAT half-length predicts IP',
+    fm02_tag:   'model vs. diagnostic',
+    fm02_model: '<span class="bc-fm-model">PKN / numerical simulators</span> compute a theoretical fracture half-length from fluid volume, viscosity, and rock mechanical properties. This modeled half-length is what engineers use to claim SRV. It is never directly observed — it is a simulation output with significant uncertainty bounds.',
+    fm02_blind: 'The model assumes perfect proppant transport, no near-wellbore tortuosity, and no fracture complexity. In reality, proppant settles, fractures branch, and part of the designed half-length is never propped. The gap between modeled and PDAT-measured half-length is the single largest source of SRV overestimation in unconventional completions.',
+    fm02_used:  '<span class="bc-fm-tag">PDAT diagnostic</span> Post-frac pressure transient analysis — gives measured half-length and conductivity, not simulated.<br><span class="bc-fm-tag">Statistical correlation</span> r² &gt; 0.70 between PDAT half-length and IP across 431 stages — empirical, field-validated.',
+    fm03_title: 'La Cocina: 9% screen-out rate',
+    fm03_tag:   'KGD / height containment failure',
+    fm03_model: '<span class="bc-fm-model">KGD model</span> assumes a fracture with limited height extension and uniform pressure distribution — appropriate for short, contained fractures in competent rock. For La Cocina, KGD-based designs assume the fracture stays within the target interval, allowing the full slurry volume to be placed before reaching screenout conditions.',
+    fm03_blind: "La Cocina's ductile, high-clay mineralogy means fractures do not propagate cleanly. Instead of a contained planar fracture, the treatment creates complex, branching geometry with high near-wellbore tortuosity. Pressure builds faster than the model predicts, proppant bridges before the design volume is placed, and the stage screens out.",
+    fm03_used:  '<span class="bc-fm-tag">Screen-out rate</span> 9% observed across 398 La Cocina stages — empirical evidence that model-based designs systematically fail in this formation.<br><span class="bc-fm-tag">PDAT half-length</span> Shortest measured half-length (163 m avg) confirms fracture complexity and limited propagation despite treatment volume.',
+    fm04_title: 'La Cocina declines 2× faster',
+    fm04_tag:   'radial model / EUR overestimation',
+    fm04_model: '<span class="bc-fm-model">Radial / pseudo-radial flow models</span> underpin standard Arps decline curve fitting when formation-specific parameters are unavailable. A single basin-wide b-exponent and Di are applied uniformly, assuming all formations drain similarly once fractured.',
+    fm04_blind: "La Cocina's ductile matrix has fundamentally different pressure depletion mechanics than Orgánico. A radial model applied uniformly cannot capture the 2× difference in decline rate. Only production data revealed it — no theoretical model predicted it.",
+    fm04_used:  '<span class="bc-fm-tag">Arps hyperbolic fit</span> Formation-differentiated decline modeling: Di 12%/mo (La Cocina) vs 6%/mo (Orgánico) — b = 1.2, 24-month dataset.<br><span class="bc-fm-tag">Production data</span> The only real post-treatment validation available — no microseismic, no tracers, no imaging. Data speaks.',
+    // OP table EN
+    op01_title: 'Fracturability ≠ Producibility',
+    op01_tag:   'wrong bench selection',
+    op01_field: "Stages are pumped in the wrong bench — mechanically responsive but geologically non-productive. Fluid and proppant are placed in a zone that breaks easily but doesn't flow. The completion is technically successful, the well is not.",
+    op01_npt:   "No immediate NPT event, but the standby cost is deferred: restimulation or recompletion jobs months later to target the productive bench. Mobilization of perforating crews, plug-and-perf equipment, and wireline units for a job that shouldn't have been necessary.",
+    op01_equip: '<span class="bc-op-tag">Proppant</span> Full proppant volume pumped into low-productivity zone — sunk cost with no recovery.<br><span class="bc-op-tag">Fluid system</span> Crosslinked or slickwater design optimized for wrong rock — wasted chemical inventory.',
+    op02_title: 'PDAT half-length predicts IP',
+    op02_tag:   'underutilized diagnostic',
+    op02_field: 'Without half-length as a design target, pumping schedules are not optimized for SRV. Engineers either over-pump (excess fluid, pressure buildup risk) or under-pump (insufficient fracture propagation, low IP). Both outcomes generate unnecessary field events.',
+    op02_npt:   'Over-pumping scenarios: unplanned pressure exceedances trigger emergency rate reductions — <strong>standby hours</strong> while the crew stabilizes wellbore pressure and evaluates surface equipment integrity. PDAT data already exists in every well file but requires analyst time to interpret.',
+    op02_equip: '<span class="bc-op-tag">HHP (hydraulic horsepower)</span> Excess pump rate requires additional HHP on location — idle pump trucks on standby generate day-rate cost.<br><span class="bc-op-tag">Friction reducers</span> Higher-than-needed slurry rates require increased FR concentration to control treating pressure.',
+    op03_title: 'La Cocina: 9% screen-out rate',
+    op03_tag:   'highest operational risk',
+    op03_field: 'A screen-out event in La Cocina means the proppant slurry bridges in the near-wellbore or fracture throat before the designed volume is placed. The stage is aborted. The wellbore must be cleaned out before the next stage can begin — adding unplanned hours to the pad schedule.',
+    op03_npt:   '<strong>Each screen-out event generates:</strong> coiled tubing (CT) mobilization for bridge cleanout (4–8 hrs typical NPT), pump shutdown and wellbore pressure bleed-off time, crew standby while CT unit rigged in, and potential re-perforation if the interval is damaged. At 9% rate across a 15-stage lateral, expect 1–2 CT interventions per well.',
+    op03_equip: '<span class="bc-op-tag">Extra pump unit</span> Standby high-pressure pump required on location for pressure control during screen-out event management.<br><span class="bc-op-tag">Friction reducers</span> Increased FR dosage needed to reduce tortuosity and near-wellbore friction — unplanned chemical volume.<br><span class="bc-op-tag">Coiled tubing unit</span> CT mobilization per screen-out event — day-rate plus crew standby hours.<br><span class="bc-op-tag">Surface iron</span> Pressure spike risk during screen-out requires check of all surface iron integrity — potential inspection downtime.',
+    op04_title: 'La Cocina declines 2× faster',
+    op04_tag:   'reserves & restimulation timing',
+    op04_field: "Faster decline means the economic limit is reached sooner than planned. Restimulation or infill drilling decisions must be made earlier. If operations teams are working from a single basin type curve, La Cocina wells trigger unplanned interventions — mobilizing equipment that wasn't scheduled in the annual operations plan.",
+    op04_npt:   'Unplanned restimulation jobs carry full standby overhead: pump fleet, blender, data acquisition unit, and wireline crew must be re-mobilized outside the scheduled pad campaign. Off-cycle mobilization is consistently more expensive than planned-sequence operations. <strong>Standby hours accumulate</strong> during logistics coordination for an unscheduled intervention.',
+    op04_equip: '<span class="bc-op-tag">Pump fleet</span> Unscheduled re-mobilization outside pad campaign — premium day-rate vs. scheduled sequence.<br><span class="bc-op-tag">Wireline unit</span> Re-perforation for restimulation requires wireline crew and perforating guns not in original AFE.<br><span class="bc-op-tag">Chemical inventory</span> Unplanned restimulation requires emergency chemical procurement — no bulk-order pricing.',
+    vp_bring_list: '<li>Field credibility — 5 yrs running these operations (Halliburton)</li><li>Full-stack pipeline: Python → PostgreSQL → Power BI → GitHub Pages</li><li>PDAT & diagnostic expertise: DFIT, StepRate, Minifrac analysis</li><li>Production decline modeling per geological facies</li><li>Claude API data agent for NL queries on frac datasets</li><li>Trilingual: Spanish (native) · English (C1) · Italian (B2)</li>',
+    vp_roles_list: '<li>Completion Data Analyst</li><li>Reservoir / Production Analyst</li><li>Technical Consultant — Completions</li><li>Digital Operations / Data-Driven Completions</li><li>Petrophysical / Geotechnical Data Analyst</li>',
+    cta_location: 'Barcelona, Spain &nbsp;·&nbsp; Available for remote &amp; relocation',
+    footer_geo:   'Geological properties: SPE URTeC-2154603 · SPE URTeC-2437257 · Espinoza 2020 (U.Texas) · AAPG Wiki · AAPG Memoir 121',
+  },
+  es: {
+    title:        'Operaciones de fractura hidráulica — Vaca Muerta',
+    subtitle:     'Analítica de datos de completación &nbsp;·&nbsp; Portfolio S. Dottori 2025',
+    header_right: '40 pozos &nbsp;·&nbsp; 1.255 etapas de fractura &nbsp;·&nbsp; declinación 24 meses<br>TotalEnergies · Repsol · Chevron · YPF · Petrobras',
+    filter_label: 'Formación',
+    filter_all:   'Todas las formaciones',
+    kpi_ip_label: 'IP promedio — mes 1',
+    kpi_stages_label: 'Etapas completadas',
+    kpi_hl_label: 'Semi-longitud de fractura promedio',
+    decline_title:'Declinación de producción por formación',
+    decline_sub:  'Promedio bopd por formación (media del grupo de pozos) — Arps hiperbólico b=1.2, 24 meses en producción',
+    ip_title:     'IP promedio por formación',
+    ip_sub:       'Producción mes 1 (bopd)',
+    hl_title:     'Semi-longitud de fractura',
+    hl_sub:       'Promedio diagnóstico PDAT (m)',
+    so_title:     'Distribución de screen-outs',
+    so_sub:       'Por formación — <strong style="color:var(--text)">98 eventos totales</strong> · tasa prom. 9%',
+    bc_title:     'Caso de negocio',
+    bc_subtitle:  'analítica de completación · upstream O&G · 2025',
+    bc_pdf_btn:   'Descargar como PDF',
+    bc_problem:   'La fractura hidráulica es el principal conductor de costos en el desarrollo no convencional — sin embargo, las decisiones de diseño se toman aún sin integrar diagnósticos en tiempo real, facies geológicas ni retroalimentación de producción post-frac. <strong>Los ingenieros recurren a reglas empíricas. Los operadores gastan de más en etapas que no producirán.</strong><br><br>Este portfolio demuestra un pipeline analítico completo construido sobre 40 pozos de Vaca Muerta — desde CSVs de campo hasta insights de completación accionables.',
+    bc_kpi1:      'Pozos analizados',
+    bc_kpi2:      'Registros de fractura',
+    bc_kpi3:      'Diagnósticos PDAT',
+    bc_kpi4:      'Formaciones',
+    th_finding:   'Hallazgo',
+    th_geo:       'Contexto geológico y datos',
+    th_cost:      'Costo de no saberlo',
+    gloss_label:  'Abreviaturas',
+    fm_title:     'Geometría de fractura — modelos vs. realidad de campo',
+    fm_sub:       'supuestos teóricos vs. lo que los datos realmente muestran',
+    fm_intro:     'Los modelos clásicos de fractura — <strong>PKN, KGD, radial</strong> — son soluciones analíticas construidas sobre supuestos idealizados: roca homogénea, altura contenida, propagación simétrica, un único plano de fractura. En campo, nada de esto se cumple. La roca tiene laminaciones, fallas naturales, variaciones litológicas cada pocos metros y contraste de esfuerzos que cambian con la profundidad. Lo que realmente podemos <em>medir</em> tras un tratamiento es siempre indirecto — y esa brecha entre modelo y realidad es donde vive el riesgo.',
+    fm_th_model:  'Modelo aplicado y supuestos',
+    fm_th_blind:  'Lo que el modelo no puede ver',
+    fm_th_used:   'Qué usamos en su lugar',
+    op_title:     'Costo operacional de no saberlo',
+    op_sub:       'consecuencias de campo por hallazgo — equipos, químicos, TNP y horas de espera',
+    op_th_field:  'Consecuencia operacional',
+    op_th_npt:    'TNP y exposición a horas de espera',
+    op_th_equip:  'Impacto en equipos y químicos',
+    vp_bring:     'Lo que aporto',
+    vp_roles:     'Roles objetivo',
+    cta_text:     'Hablemos de datos de completación.',
+    gloss_ip:     'Producción Inicial — tasa de petróleo (bopd) en el mes 1, el indicador principal de desempeño del pozo',
+    gloss_srv:    'Volumen de Reservorio Estimulado — volumen total de roca efectivamente contactado por la red de fracturas',
+    gloss_di:     'Tasa de Declinación Inicial — tasa mensual a la que declina la producción al inicio (modelo de Arps)',
+    gloss_r2:     'Coeficiente de determinación — medida estadística de cuánto predice una variable a otra (escala 0–1; &gt;0.70 = fuerte)',
+    gloss_pdat:   'Herramienta de Análisis Diagnóstico Post-Frac — diagnóstico de campo que mide la geometría real de la fractura tras el tratamiento',
+    so_sub:       'Por formación — <strong style="color:var(--text)">98 eventos totales</strong> · tasa prom. 9%',
+    f01_title:    'Fracturabilidad ≠ Producibilidad',
+    f01_tag:      'Orgánico vs La Cocina',
+    f01_exp:      'El miembro Orgánico tiene un índice de fragilidad menor que Loma Amarilla, pero entrega la mayor producción inicial — <span class="bc-num">907 bopd IP promedio</span> — gracias a su riqueza orgánica (<span class="bc-num">TOC 6,5%</span>) y porosidad de matriz (<span class="bc-num">ϕ 11,5%</span>). La Cocina, pese a fracturarse con mayor facilidad, es dúctil y pobre en orgánicos: se rompe, pero no fluye.',
+    f01_cost:     '<strong>Si no lo sabés:</strong> los ingenieros concentran etapas en los intervalos más frágiles buscando fracturas fáciles. Se obtiene SRV sin almacenamiento. Los pozos se completan en el banco equivocado y el portfolio rinde por debajo de las curvas tipo sin explicación técnica clara.',
+    f02_title:    'La semi-longitud PDAT es el mejor predictor de IP',
+    f02_exp:      'La correlación entre semi-longitud diagnóstica PDAT y producción del mes 1 en <span class="bc-num">431 etapas</span> revela una relación positiva significativa (<span class="bc-num">r² &gt; 0,70</span>). La semi-longitud es el mejor proxy medible en campo del SRV. Mayor semi-longitud apuntalada = más reservorio contactado = mayor producción temprana.',
+    f02_cost:     '<strong>Si no lo sabés:</strong> el diseño se optimiza para respuesta de presión neta en lugar del SRV. Los equipos bombean más fluido y propante sin entender qué parámetro geométrico impulsa la producción. Los datos PDAT existen en cada archivo de pozo pero permanecen sin analizar — un activo de datos que genera cero valor.',
+    f03_title:    'La Cocina tiene una tasa de screen-out del 9%',
+    f03_tag:      'la más alta entre todas las formaciones',
+    f03_exp:      'La Cocina se depositó en un ambiente anóxico de aguas profundas con alto contenido de arcilla y baja cementación de cuarzo — roca dúctil y plástica. Las fracturas no se propagan limpiamente: se tuercen, ramifican y cierran temprano. Con <span class="bc-num">9% de screen-out</span> en <span class="bc-num">398 etapas</span>, esta formación requiere un sistema de fluidos fundamentalmente diferente y tasas de bombeo más conservadoras.',
+    f03_cost:     '<strong>Si no lo sabés:</strong> se aplica la misma receta en todos los bancos. En La Cocina: screen-outs repetidos, coiled tubing para limpiar puentes, etapas perdidas y TNP acumulado en el pad. El aumento de presión durante screen-outs es también causa de fallas de equipos e incidentes de superficie.',
+    f04_title:    'La Cocina declina 2× más rápido que Orgánico',
+    f04_exp:      'El ajuste de curvas hiperbólicas de Arps (<span class="bc-num">b = 1,2</span>) a 24 meses por formación muestra divergencia marcada: Orgánico mantiene <span class="bc-num">Di = 6%/mes</span>, La Cocina pierde producción a <span class="bc-num">Di = 12%/mes</span>. Para el mes 12, un pozo de La Cocina produce la mitad que uno equivalente en Orgánico.',
+    f04_cost:     '<strong>Si no lo sabés:</strong> las reservas se registran con una única curva tipo de cuenca. Los pozos de La Cocina se sobre-reservan sistemáticamente con ajustes a la baja posteriores. Inversionistas reciben estimaciones de EUR incorrectas. La valoración de adquisiciones con curvas tipo mezcladas sobrepaga activos con alta proporción de La Cocina.',
+
+    // FM table ES
+    fm01_title: 'Fracturabilidad ≠ Producibilidad',
+    fm01_tag:   'PKN / índice de fragilidad',
+    fm01_model: '<span class="bc-fm-model">Modelo PKN</span> asume una fractura vertical única con altura contenida que se propaga en roca homogénea e isotrópica. El Índice de Fragilidad (BI) se usa como proxy principal de calidad de completación — mayor BI = mejor candidato. El modelo predice semi-longitudes mayores en roca frágil.',
+    fm01_blind: 'El PKN no puede considerar contenido orgánico, porosidad de matriz ni capacidad de almacenamiento de fluidos. Una formación de alto BI que se rompe limpiamente aún necesita dónde almacenar y fluir hidrocarburos. En Vaca Muerta, Orgánico tiene menor BI que Loma Amarilla pero mayor TOC y porosidad — el modelo lo clasifica como peor candidato cuando es en realidad el mejor productor.',
+    fm01_used:  '<span class="bc-fm-tag">Datos de producción</span> IP del mes 1 por formación — la única prueba post-tratamiento de que se completó la zona correcta.<br><span class="bc-fm-tag">Propiedades geológicas</span> TOC, porosidad y permeabilidad por banco correlacionadas con IP para jerarquizar la calidad real de completación.',
+    fm02_title: 'La semi-longitud PDAT predice el IP',
+    fm02_tag:   'modelo vs. diagnóstico',
+    fm02_model: '<span class="bc-fm-model">PKN / simuladores numéricos</span> calculan una semi-longitud teórica de fractura a partir del volumen de fluido, viscosidad y propiedades mecánicas de la roca. Esta semi-longitud modelada es lo que los ingenieros usan para estimar el SRV. Nunca se observa directamente — es una salida de simulación con bandas de incertidumbre significativas.',
+    fm02_blind: 'El modelo asume transporte perfecto de propante, sin tortuosidad en la zona cercana al pozo y sin complejidad de fractura. En la realidad, el propante sedimenta, las fracturas se ramifican y parte de la semi-longitud diseñada nunca queda apuntalada. La brecha entre semi-longitud modelada y medida por PDAT es la mayor fuente de sobreestimación de SRV en completaciones no convencionales.',
+    fm02_used:  '<span class="bc-fm-tag">Diagnóstico PDAT</span> Análisis transitorio de presión post-frac — entrega semi-longitud y conductividad medidas, no simuladas.<br><span class="bc-fm-tag">Correlación estadística</span> r² &gt; 0,70 entre semi-longitud PDAT e IP en 431 etapas — empírico, validado en campo.',
+    fm03_title: 'La Cocina: 9% de tasa de screen-out',
+    fm03_tag:   'KGD / falla de contención de altura',
+    fm03_model: '<span class="bc-fm-model">Modelo KGD</span> asume una fractura con extensión de altura limitada y distribución uniforme de presión a lo largo de su longitud — apropiado para fracturas cortas y contenidas en roca competente. Para La Cocina, los diseños basados en KGD asumen que la fractura permanece dentro del intervalo objetivo.',
+    fm03_blind: 'La mineralogía dúctil y de alto contenido arcilloso de La Cocina hace que las fracturas no se propaguen limpiamente. En lugar de una fractura planar contenida, el tratamiento genera geometría compleja y ramificada con alta tortuosidad en la zona cercana al pozo. La presión sube más rápido de lo que predice el modelo, el propante forma puentes antes de que se coloque el volumen diseñado y la etapa hace screen-out.',
+    fm03_used:  '<span class="bc-fm-tag">Tasa de screen-out</span> 9% observado en 398 etapas de La Cocina — evidencia empírica de que los diseños basados en modelo fallan sistemáticamente en esta formación.<br><span class="bc-fm-tag">Semi-longitud PDAT</span> La semi-longitud medida más corta (163 m prom.) confirma la complejidad de fractura y propagación limitada.',
+    fm04_title: 'La Cocina declina 2× más rápido',
+    fm04_tag:   'modelo radial / sobreestimación de EUR',
+    fm04_model: '<span class="bc-fm-model">Modelos de flujo radial / pseudo-radial</span> sustentan el ajuste estándar de curvas de declinación de Arps cuando no hay parámetros por formación disponibles. Se aplica un único exponente b y Di a nivel de cuenca, asumiendo que todas las formaciones drenan de manera similar una vez fracturadas.',
+    fm04_blind: 'La matriz dúctil de La Cocina tiene mecánicas de agotamiento de presión fundamentalmente diferentes a las de Orgánico. Un modelo radial aplicado uniformemente no puede capturar la diferencia de 2× en la tasa de declinación. Solo los datos de producción lo revelaron — ningún modelo teórico lo predijo.',
+    fm04_used:  '<span class="bc-fm-tag">Ajuste hiperbólico de Arps</span> Modelado de declinación diferenciado por formación: Di 12%/mes (La Cocina) vs 6%/mes (Orgánico) — b = 1,2, dataset de 24 meses.<br><span class="bc-fm-tag">Datos de producción</span> La única validación real post-tratamiento disponible — sin microsísmica, sin trazadores, sin imágenes. Los datos hablan.',
+    // OP table ES
+    op01_title: 'Fracturabilidad ≠ Producibilidad',
+    op01_tag:   'selección del banco equivocado',
+    op01_field: 'Las etapas se bombean en el banco incorrecto — mecánicamente responsivo pero geológicamente no productivo. El fluido y el propante se colocan en una zona que se rompe fácilmente pero no fluye. La completación es técnicamente exitosa, el pozo no.',
+    op01_npt:   'No hay evento de TNP inmediato, pero el costo de espera es diferido: trabajos de reestimulación o recompletación meses después para alcanzar el banco productivo. Movilización de equipos de perforación, plug-and-perf y wireline para un trabajo que no debería haber sido necesario.',
+    op01_equip: '<span class="bc-op-tag">Propante</span> Volumen completo de propante bombeado en zona de baja productividad — costo hundido sin recuperación.<br><span class="bc-op-tag">Sistema de fluidos</span> Diseño crosslinked o slickwater optimizado para la roca incorrecta — inventario químico desperdiciado.',
+    op02_title: 'La semi-longitud PDAT predice el IP',
+    op02_tag:   'diagnóstico subutilizado',
+    op02_field: 'Sin la semi-longitud como objetivo de diseño, los programas de bombeo no se optimizan para el SRV. Los ingenieros bombean de más (exceso de fluido, riesgo de sobrepresión) o de menos (propagación insuficiente, IP bajo). Ambos resultados generan eventos de campo innecesarios.',
+    op02_npt:   'Escenarios de sobrebombeo: excedencias de presión no planificadas generan reducciones de tasa de emergencia — <strong>horas de espera</strong> mientras el equipo estabiliza la presión del pozo y evalúa la integridad del equipo de superficie. Los datos PDAT existen en cada archivo de pozo pero requieren tiempo de analista para interpretarse.',
+    op02_equip: '<span class="bc-op-tag">HHP (potencia hidráulica)</span> La tasa de bombeo excesiva requiere HHP adicional en locación — camiones bomba inactivos en espera generan costo por día.<br><span class="bc-op-tag">Reductores de fricción</span> Las tasas de lechada más altas de lo necesario requieren mayor concentración de FR para controlar la presión de tratamiento.',
+    op03_title: 'La Cocina: 9% de tasa de screen-out',
+    op03_tag:   'mayor riesgo operacional',
+    op03_field: 'Un evento de screen-out en La Cocina significa que la lechada de propante forma un puente en la zona cercana al pozo o en la garganta de la fractura antes de que se coloque el volumen diseñado. La etapa se aborta. El pozo debe limpiarse antes de iniciar la siguiente etapa — sumando horas no planificadas al programa del pad.',
+    op03_npt:   '<strong>Cada evento de screen-out genera:</strong> movilización de coiled tubing (CT) para limpieza de puente (4–8 hrs de TNP típico), tiempo de cierre de bomba y venteo de presión del pozo, horas de espera del equipo mientras se ensambla la unidad de CT, y posible re-perforación si el intervalo es dañado. Con tasa del 9% en un lateral de 15 etapas, esperá 1–2 intervenciones de CT por pozo.',
+    op03_equip: '<span class="bc-op-tag">Bomba adicional</span> Bomba de alta presión en espera requerida en locación para control de presión durante la gestión del screen-out.<br><span class="bc-op-tag">Reductores de fricción</span> Dosis aumentada de FR para reducir tortuosidad y fricción en la zona cercana al pozo — volumen químico no planificado.<br><span class="bc-op-tag">Unidad de coiled tubing</span> Movilización de CT por evento de screen-out — día-tarifa más horas de espera del equipo.<br><span class="bc-op-tag">Fierro de superficie</span> El riesgo de pico de presión requiere inspección de toda la integridad del fierro de superficie — potencial tiempo de inactividad.',
+    op04_title: 'La Cocina declina 2× más rápido',
+    op04_tag:   'reservas y timing de reestimulación',
+    op04_field: 'Una declinación más rápida significa que el límite económico se alcanza antes de lo planificado. Las decisiones de reestimulación o perforación de relleno deben tomarse más temprano. Si los equipos operativos trabajan con una única curva tipo de cuenca, los pozos de La Cocina generan intervenciones no planificadas — movilizando equipos que no estaban programados en el plan anual.',
+    op04_npt:   'Los trabajos de reestimulación no planificados llevan todos los costos de espera: flota de bombas, mezclador, unidad de adquisición de datos y equipo de wireline deben re-movilizarse fuera de la campaña de pad programada. La movilización fuera de ciclo es consistentemente más cara que las operaciones en secuencia planificada. <strong>Las horas de espera se acumulan</strong> durante la coordinación logística para una intervención no programada.',
+    op04_equip: '<span class="bc-op-tag">Flota de bombas</span> Re-movilización no programada fuera de la campaña de pad — tarifa premium vs. secuencia planificada.<br><span class="bc-op-tag">Unidad de wireline</span> La re-perforación para reestimulación requiere equipo de wireline y cañones perforadores no incluidos en el AFE original.<br><span class="bc-op-tag">Inventario de químicos</span> La reestimulación no planificada requiere adquisición de emergencia de químicos — sin precio de compra en volumen.',
+    vp_bring_list: '<li>Credibilidad de campo — 5 años operando en sitio (Halliburton)</li><li>Pipeline completo: Python → PostgreSQL → Power BI → GitHub Pages</li><li>Expertise en PDAT y diagnósticos: DFIT, StepRate, Minifrac</li><li>Modelado de declinación de producción por facies geológicas</li><li>Agente de datos con API Claude para consultas en lenguaje natural</li><li>Trilingüe: español (nativo) · inglés (C1) · italiano (B2)</li>',
+    vp_roles_list: '<li>Analista de Datos de Completación</li><li>Analista de Reservorio / Producción</li><li>Consultor Técnico — Completaciones</li><li>Operaciones Digitales / Completaciones Basadas en Datos</li><li>Analista de Datos Petrofísicos / Geotécnicos</li>',
+    cta_location: 'Barcelona, España &nbsp;·&nbsp; Disponible para trabajo remoto y reubicación',
+    footer_geo:   'Propiedades geológicas: SPE URTeC-2154603 · SPE URTeC-2437257 · Espinoza 2020 (U.Texas) · AAPG Wiki · AAPG Memoir 121',
+    footer_data:  'Dataset: datos operacionales simulados validados contra experiencia de campo — Halliburton, Vaca Muerta / Eagle Ford / Cuenca Burgos 2013–2018',
+  }
+};
+
+let currentLang = 'en';
+
+function applyLang(lang) {
+  const t = LANG[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  // Update chart axis labels and re-render
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.toLowerCase() === lang);
+  });
+  // Re-render charts to pick up any label changes
+  renderAll(currentFilter);
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  applyLang(lang);
+}
+
+let currentFilter = 'all';
+const _origSetFilter = setFilter;
 
 renderAll('all');
 
