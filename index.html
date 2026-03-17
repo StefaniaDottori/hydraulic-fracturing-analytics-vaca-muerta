@@ -699,83 +699,9 @@
     .header { flex-direction: column; align-items: flex-start; gap: 8px; }
   }
 
-  /* ── Tab Navigation ── */
-  .tab-nav {
-    display: flex;
-    gap: 0;
-    border-bottom: 2px solid var(--red);
-    margin-bottom: 2rem;
-  }
-  .tab-btn {
-    padding: 10px 24px;
-    font-size: 12px;
-    font-family: var(--mono);
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    cursor: pointer;
-    background: var(--white);
-    color: var(--text-sub);
-    border: 1px solid var(--border);
-    border-bottom: none;
-    border-radius: 6px 6px 0 0;
-    margin-right: 4px;
-    transition: all 0.15s;
-    position: relative;
-    bottom: -2px;
-  }
-  .tab-btn:hover { color: var(--red); border-color: var(--red); }
-  .tab-btn.active {
-    background: var(--red);
-    color: #fff;
-    border-color: var(--red);
-  }
-  .tab-btn .tab-badge {
-    display: inline-block;
-    font-size: 9px;
-    background: rgba(255,255,255,0.25);
-    padding: 1px 5px;
-    border-radius: 3px;
-    margin-left: 6px;
-    letter-spacing: 0.03em;
-  }
-  .tab-btn:not(.active) .tab-badge {
-    background: rgba(192,57,43,0.1);
-    color: var(--red);
-  }
-  .tab-panel { display: none; }
-  .tab-panel.active { display: block; }
-  .npt-frame-wrapper {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  .npt-frame-wrapper iframe {
-    width: 100%;
-    height: 90vh;
-    border: none;
-    display: block;
-  }
-</style>
 </head>
 <body>
 <div class="dash">
-
-  <!-- ── Tab Navigation ── -->
-  <div class="tab-nav">
-    <button class="tab-btn active" onclick="switchTab('production')" id="tab-production">
-      📊 Production &amp; Completion Analysis
-      <span class="tab-badge">Vaca Muerta</span>
-    </button>
-    <button class="tab-btn" onclick="switchTab('npt')" id="tab-npt">
-      ⚠️ NPT Operations Report
-      <span class="tab-badge">446 events</span>
-    </button>
-  </div>
-
-  <!-- ── Tab Panel 1: Original Dashboard ── -->
-  <div class="tab-panel active" id="panel-production">
-
   <!-- Header -->
   <div class="header">
     <div class="header-left">
@@ -1728,64 +1654,14 @@ const _origSetFilter = setFilter;
 renderAll('all');
 
 function printBusinessCase() {
-
-  </div><!-- end tab-panel production -->
-
-  <!-- ── Tab Panel 2: NPT Operations Report ── -->
-  <div class="tab-panel" id="panel-npt">
-
-    <!-- Header for NPT tab (mirrors main header style) -->
-    <div class="header" style="margin-top:0;">
-      <div class="header-left">
-        <h1>NPT Operations Report — Neuquén Basin</h1>
-        <p>Frac operations diagnostics &nbsp;·&nbsp; S. Dottori portfolio 2025</p>
-      </div>
-      <div style="display:flex;flex-direction:column;align-items:flex-end;">
-        <div class="header-right">
-          446 NPT events &nbsp;·&nbsp; 251.6 hrs total &nbsp;·&nbsp; 40 wells<br>
-          Screen-out analysis · Formation risk profiles · $524K recoverable
-        </div>
-        <div style="margin-top:8px;">
-          <a href="npt_operations_report.html" target="_blank"
-             style="font-size:11px;font-family:var(--mono);color:var(--red);text-decoration:none;border:1px solid var(--red);padding:4px 12px;border-radius:4px;">
-            ↗ Open full report
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Inline iframe -->
-    <div class="npt-frame-wrapper">
-      <iframe src="npt_operations_report.html"
-              title="NPT Operations Report"
-              loading="lazy"
-              id="npt-iframe">
-      </iframe>
-    </div>
-
-  </div><!-- end tab-panel npt -->
-
-</div><!-- end .dash -->
-
-<script>
-function switchTab(tab) {
-  // Hide all panels
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  // Show selected
-  document.getElementById('panel-' + tab).classList.add('active');
-  document.getElementById('tab-' + tab).classList.add('active');
-  // Lazy load NPT iframe on first click
-  if (tab === 'npt') {
-    const iframe = document.getElementById('npt-iframe');
-    if (!iframe.src || iframe.src === window.location.href) {
-      iframe.src = 'npt_operations_report.html';
-    }
-  }
-  // Scroll to top
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  const hide = document.querySelectorAll('.filters, .kpis, .chart-full, .charts-bottom');
+  hide.forEach(el => el.style.display = 'none');
+  window.print();
+  hide.forEach(el => el.style.display = '');
 }
+
 </script>
 
+</div><!-- end .dash -->
 </body>
 </html>
