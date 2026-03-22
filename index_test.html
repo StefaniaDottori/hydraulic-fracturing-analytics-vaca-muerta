@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Test</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+</head>
+<body>
+<h1 style="font-family:sans-serif;padding:2rem;">✅ GitHub Pages works</h1>
+<canvas id="test" width="400" height="200"></canvas>
+<script>
+new Chart(document.getElementById('test'), {
+  type: 'bar',
+  data: {
+    labels: ['Orgánico','La Cocina','Loma Amarilla'],
+    datasets:[{ data:[907,572,565], backgroundColor:['#C0392B','#555','#D4A017'] }]
+  },
+  options:{ plugins:{ legend:{ display:false } } }
+});
+</script>
+</body>
+</html>
